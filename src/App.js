@@ -22,16 +22,24 @@ const Banner = ({purpose, imageUrl, title1, title2, desc1, desc2, linkName, butt
 
 
 function App() {
-  const [apiRentData, setApiRentData] = useState('');
+  const [apiRentData, setApiRentData] = useState([]);
   const [apiSaleData, setApiSaleData] = useState([]);
 
-  useEffect (() => {
-      const rent = forRent();
-      setApiRentData(rent);
+  useEffect(() => {
+    const fetchApiData = async () => {
+      try {
+        const rent = await forRent();
+        setApiRentData(rent);
 
-      const sale = forSale();
-      setApiSaleData(sale);
-  },[])
+        const sale = await forSale();
+        setApiSaleData(sale);
+      } catch (error) {
+        console.error(error);
+      }
+    };
+
+    fetchApiData();
+  }, []);
 
 
   return (
