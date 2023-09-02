@@ -58,7 +58,7 @@ function App() {
         <Flex flexWrap={'wrap'}>
           {/* {apiRentData.rent.map((property) => <Property property={property} key={property.id} />)} */}
 
-          {apiRentData.rent.map((item) => (
+          {apiRentData.map((item) => (
             <p key= {item.id}>{item.title}</p>
           ))}
 
